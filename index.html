@@ -472,6 +472,80 @@
     }
     .scope-env { font-size: 12px; color: var(--text-tertiary); }
     .scope-env-val { color: var(--text-default); font-weight: 500; }
+
+    /* Health summary card */
+    .health-card {
+      background: var(--bg-default);
+      border: 1px solid var(--border-quiet);
+      border-radius: 8px;
+      padding: 16px 20px;
+      display: flex; align-items: center; gap: 24px;
+    }
+    .health-stat { display: flex; flex-direction: column; gap: 2px; }
+    .health-stat-value {
+      font-size: 22px; font-weight: 600; color: var(--text-default); line-height: 1;
+    }
+    .health-stat-value.pass { color: var(--success-text); }
+    .health-stat-value.fail { color: var(--error-text); }
+    .health-stat-label { font-size: 12px; color: var(--text-tertiary); }
+    .health-divider { width: 1px; height: 32px; background: var(--border-default); }
+    .health-bar-wrap { flex: 1; display: flex; flex-direction: column; gap: 6px; }
+    .health-bar-label { font-size: 12px; color: var(--text-quiet); display: flex; justify-content: space-between; }
+    .health-bar-track {
+      height: 6px; border-radius: 3px; background: var(--bg-neutral); overflow: hidden;
+    }
+    .health-bar-fill {
+      height: 100%; border-radius: 3px;
+      background: linear-gradient(90deg, var(--success-text) 0%, #22c55e 100%);
+    }
+    .health-badge-row { display: flex; gap: 8px; align-items: center; }
+    .health-badge {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 3px 8px; border-radius: 4px;
+      font-size: 12px; font-weight: 500;
+    }
+    .health-badge.pass { background: var(--success-bg); color: var(--success-text); }
+    .health-badge.fail { background: #fff2f2; color: var(--error-text); }
+    .health-badge.warn { background: #fff7ed; color: #c2410c; }
+    .health-view-link { font-size: 12px; color: #3c63ea; text-decoration: underline; cursor: pointer; margin-left: auto; }
+
+    /* Impl status chip */
+    .impl-status-chip {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 2px 8px; border-radius: 4px;
+      font-size: 12px; font-weight: 500;
+      background: var(--info-bg); color: var(--info-text);
+    }
+
+    /* Scope inline */
+    .req-scope-row {
+      display: flex; align-items: flex-start; gap: 8px;
+      margin-top: 14px; padding-top: 14px;
+      border-top: 1px solid var(--border-quiet);
+    }
+    .req-scope-label { font-size: 12px; color: var(--text-tertiary); min-width: 44px; padding-top: 1px; }
+    .req-scope-chips { display: flex; flex-wrap: wrap; gap: 5px; }
+    .req-scope-chip {
+      padding: 2px 7px; border-radius: 3px;
+      font-size: 12px; color: var(--text-quiet);
+      background: var(--bg-neutral);
+    }
+
+    /* Issue rows */
+    .issue-row {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 10px 0; border-top: 1px solid var(--border-quiet);
+    }
+    .issue-icon {
+      width: 20px; height: 20px; border-radius: 4px;
+      background: #fff2f2; color: var(--error-text);
+      display: inline-flex; align-items: center; justify-content: center;
+      flex-shrink: 0; font-size: 10px; font-weight: 700; margin-top: 1px;
+    }
+    .issue-body { flex: 1; }
+    .issue-title { font-size: 13px; font-weight: 500; color: var(--text-default); margin-bottom: 2px; }
+    .issue-meta { font-size: 11px; color: var(--text-tertiary); }
+    .issue-cta { font-size: 12px; color: #3c63ea; cursor: pointer; text-decoration: underline; flex-shrink: 0; margin-top: 2px; }
   </style>
 </head>
 <body>
@@ -662,6 +736,41 @@
         <!-- Main content -->
         <div class="detail-main">
 
+          <!-- Control health summary -->
+          <div class="health-card">
+            <div class="health-stat">
+              <span class="health-stat-value pass">14</span>
+              <span class="health-stat-label">Tests passing</span>
+            </div>
+            <div class="health-divider"></div>
+            <div class="health-stat">
+              <span class="health-stat-value fail">2</span>
+              <span class="health-stat-label">Tests failing</span>
+            </div>
+            <div class="health-divider"></div>
+            <div class="health-bar-wrap">
+              <div class="health-bar-label">
+                <span>Test health</span>
+                <span>16 total</span>
+              </div>
+              <div class="health-bar-track">
+                <div class="health-bar-fill" style="width:87.5%"></div>
+              </div>
+              <div class="health-badge-row">
+                <span class="health-badge pass">
+                  <svg width="10" height="10" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  14 passing
+                </span>
+                <span class="health-badge fail">
+                  <svg width="10" height="10" viewBox="0 0 16 16" fill="none"><path d="M4.5 4.5l7 7M11.5 4.5l-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                  2 failing
+                </span>
+                <span class="health-badge warn">2 unassigned</span>
+                <a class="health-view-link">View in Health →</a>
+              </div>
+            </div>
+          </div>
+
           <!-- Requirement card -->
           <div class="card">
             <div class="card-header">
@@ -674,13 +783,26 @@
               </div>
               <p class="card-text">Remote access is access to organizational systems (or processes acting on behalf of users) that communicate through external networks such as the Internet. Types of remote access include dial-up, broadband, and wireless. Organizations use encrypted virtual private networks (VPNs) to enhance confidentiality and integrity for remote connections. The use of encryp...</p>
               <a class="card-link">Show full requirement</a>
+              <div class="req-scope-row">
+                <span class="req-scope-label">Scope</span>
+                <div class="req-scope-chips">
+                  <span class="req-scope-chip">AWS S3</span>
+                  <span class="req-scope-chip">AWS RDS</span>
+                  <span class="req-scope-chip">Snowflake</span>
+                  <span class="req-scope-chip">Production, Backup</span>
+                </div>
+              </div>
             </div>
           </div>
 
           <!-- Implementation design card -->
           <div class="card">
-            <div class="card-header">
+            <div class="card-header" style="display:flex;align-items:center;justify-content:space-between;">
               <span class="card-title">Implementation design</span>
+              <span class="impl-status-chip">
+                <svg width="10" height="10" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3.5 2"/></svg>
+                In progress
+              </span>
             </div>
             <div class="card-body">
               <p class="card-text">To control who can access our systems remotely, we've set up a few layers of protection. Anyone working remotely must connect through our VPN, and everyone needs to verify their identity with a second factor (like an authenticator app) before getting in. We've written down the rules for how remote access is supposed to work in a policy doc — things like which connection methods are allowed and how long a session can stay open before timing out. For engineers who need to access our production servers directly, there's an extra step: they have to go through a secure gateway, and every session gets logged. We're also in the process of formally cataloging every type of remote connection we allow (employees, contractors, automated systems) so nothing is flying under the radar.</p>
@@ -712,6 +834,27 @@
                   <span class="system-name">Snowflake</span>
                   <span class="system-desc">Backup snapshots — inherits production config</span>
                 </div>
+              </div>
+
+              <div class="card-section-label" style="display:flex;align-items:center;justify-content:space-between;margin-top:24px;">
+                <span>Issues</span>
+                <span style="font-size:11px;font-weight:400;color:var(--text-tertiary);">2 open</span>
+              </div>
+              <div class="issue-row">
+                <div class="issue-icon">!</div>
+                <div class="issue-body">
+                  <div class="issue-title">Backup account connection not established</div>
+                  <div class="issue-meta">AWS S3 (acme-backup-prod) · Opened 3 days ago</div>
+                </div>
+                <a class="issue-cta">Resolve</a>
+              </div>
+              <div class="issue-row">
+                <div class="issue-icon">!</div>
+                <div class="issue-body">
+                  <div class="issue-title">2 tests missing evidence owners</div>
+                  <div class="issue-meta">S3 Backup Bucket Encryption Check, RDS Encryption at Rest</div>
+                </div>
+                <a class="issue-cta">Assign</a>
               </div>
             </div>
           </div>
