@@ -11,18 +11,18 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --text-default: #151414;
-      --text-secondary: #545352;
-      --text-tertiary: #6e6c6b;
+      --text-default: #181724;
+      --text-secondary: #3b3a52;
+      --text-tertiary: #9b9a99;
       --bg-default: #ffffff;
-      --bg-neutralweak: #faf8f8;
-      --bg-neutralsubtle: #e8e8e8;
-      --bg-neutralhover: #f0eeee;
-      --border-weak: #dcdbdb;
-      --border-default: #c9c8c7;
-      --border-strong: #6e6c6b;
+      --bg-neutralweak: #f9f9fb;
+      --bg-neutralsubtle: #efeff5;
+      --bg-neutralhover: #eeeef4;
+      --border-weak: #efeff5;
+      --border-default: #dcdcea;
+      --border-strong: #1f1e2f;
       --brand-primary: #8e34e3;
-      --brand-primary-light: #f5ecfd;
+      --brand-primary-light: #f6f4ff;
       --success-text: #1a6b3c;
       --success-bg: #e6f7ee;
       --success-border: #a3d9b8;
@@ -41,7 +41,7 @@
       font-family: 'Inter', sans-serif;
       font-size: 14px;
       color: var(--text-default);
-      background: #f0eeee;
+      background: #f9f9fb;
       height: 100vh;
       overflow: hidden;
     }
@@ -237,7 +237,7 @@
       transition: background 0.1s;
     }
 
-    .snav-item:hover .snav-inner { background: #eeecec; }
+    .snav-item:hover .snav-inner { background: #eeeef4; }
 
     .snav-sub {
       display: flex;
@@ -252,15 +252,15 @@
       transition: background 0.1s;
     }
 
-    .snav-sub:hover { background: #eeecec; }
+    .snav-sub:hover { background: #eeeef4; }
 
     .snav-sub-active {
-      background: #e8e8e8;
-      color: #771fcb;
+      background: #efeff5;
+      color: var(--brand-primary);
       font-weight: 500;
     }
 
-    .snav-sub-active:hover { background: #e0dede; }
+    .snav-sub-active:hover { background: #e5e4f0; }
 
     /* ── Page Content ── */
     .page-content {
@@ -809,7 +809,7 @@
       justify-content: center;
       font-size: 10px;
       font-weight: 700;
-      color: #771fcb;
+      color: var(--brand-primary);
       text-transform: uppercase;
       letter-spacing: 0.1px;
       cursor: pointer;
@@ -1164,7 +1164,7 @@
       justify-content: center;
       font-size: 9px;
       font-weight: 700;
-      color: #771fcb;
+      color: var(--brand-primary);
       text-transform: uppercase;
       flex-shrink: 0;
     }
@@ -1205,7 +1205,7 @@
       flex: 1;
       overflow-y: auto;
       padding: 20px 24px;
-      background: #f5f3f3;
+      background: #f9f9fb;
       min-width: 0;
       display: flex;
       flex-direction: column;
@@ -1213,8 +1213,8 @@
     .detail-tab-panel { display: none; flex-direction: column; gap: 16px; }
     .detail-tab-panel.active { display: flex; }
     .detail-sidebar {
-      width: 320px;
-      min-width: 280px;
+      width: 380px;
+      min-width: 320px;
       flex-shrink: 0;
       border-left: 1px solid var(--border-weak);
       overflow-y: auto;
@@ -1493,7 +1493,7 @@
     .ai-chat-body {
       flex: 1;
       overflow-y: auto;
-      background: #f5f3f3;
+      background: #f9f9fb;
       padding: 24px 16px;
       display: flex;
       flex-direction: column;
@@ -1647,7 +1647,7 @@
     .ai-canvas-body {
       flex: 1;
       overflow-y: auto;
-      background: #f5f3f3;
+      background: #f9f9fb;
     }
 
     .ai-canvas-content {
@@ -2006,7 +2006,7 @@
       transition: background 0.1s;
     }
 
-    .priority-task-card:hover { background: #eeecec; }
+    .priority-task-card:hover { background: #eeeef4; }
 
     .priority-task-text {
       font-size: 13px;
@@ -2082,7 +2082,7 @@
   <!-- Leading: Vanta wordmark + workspace switcher -->
   <div class="global-bar-leading">
     <!-- Vanta wordmark -->
-    <span style="font-size:16px;font-weight:700;color:#151414;letter-spacing:-0.3px;font-family:'Inter',sans-serif;flex-shrink:0;">Vanta</span>
+    <span style="font-size:16px;font-weight:700;color:#181724;letter-spacing:-0.3px;font-family:'Inter',sans-serif;flex-shrink:0;">Vanta</span>
 
     <!-- Workspace switcher: TruSecure -->
     <button class="workspace-switcher">
@@ -2128,15 +2128,15 @@
 <div class="appshell">
 
   <!-- Sidebar -->
-  <nav class="sidebar" style="background:#faf8f8;display:flex;flex-direction:column;justify-content:space-between;">
+  <nav class="sidebar" style="background:#f9f9fb;display:flex;flex-direction:column;justify-content:space-between;">
     <div style="display:flex;flex-direction:column;overflow-y:auto;flex:1;">
 
       <!-- Search / Help -->
       <div style="padding:12px 12px 0;">
-        <div style="background:#e8e8e8;border-radius:9999px;height:32px;display:flex;align-items:center;padding:0 12px;gap:8px;">
-          <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="4.5" stroke="#6e6c6b" stroke-width="1.5"/><path d="M10.5 10.5L14 14" stroke="#6e6c6b" stroke-width="1.5" stroke-linecap="round"/></svg>
-          <span style="flex:1;font-size:14px;color:rgba(110,108,107,0.77);letter-spacing:0.14px;">Help...</span>
-          <span style="font-size:14px;color:rgba(110,108,107,0.77);letter-spacing:0.14px;">⌘+K</span>
+        <div style="background:#efeff5;border-radius:9999px;height:32px;display:flex;align-items:center;padding:0 12px;gap:8px;">
+          <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="4.5" stroke="#9b9a99" stroke-width="1.5"/><path d="M10.5 10.5L14 14" stroke="#9b9a99" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <span style="flex:1;font-size:14px;color:#8c8baa;letter-spacing:0.14px;">Help...</span>
+          <span style="font-size:14px;color:#8c8baa;letter-spacing:0.14px;">⌘+K</span>
         </div>
       </div>
 
@@ -2275,7 +2275,7 @@
     </div>
 
     <!-- Collapse toggle -->
-    <div style="padding:8px 14px 12px;display:flex;justify-content:flex-end;background:#faf8f8;border-top:1px solid var(--border-weak);">
+    <div style="padding:8px 14px 12px;display:flex;justify-content:flex-end;background:#f9f9fb;border-top:1px solid var(--border-weak);">
       <div style="padding:8px;border-radius:4px;cursor:pointer;display:flex;align-items:center;justify-content:center;" title="Collapse sidebar">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L6 8l4 5M3 3v10" stroke="#6e6c6b" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </div>
