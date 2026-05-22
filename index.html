@@ -531,6 +531,53 @@
       background: var(--bg-neutral);
     }
 
+    /* Implementation blocks */
+    .impl-blocks { display: flex; flex-direction: column; gap: 8px; }
+    .impl-block {
+      border: 1px solid var(--border-quiet);
+      border-radius: 6px; overflow: hidden;
+    }
+    .impl-block-header {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 14px;
+      background: var(--bg-lowered);
+      border-bottom: 1px solid var(--border-quiet);
+    }
+    .impl-block-title { font-size: 13px; font-weight: 600; color: var(--text-default); flex: 1; }
+    .impl-block-req {
+      display: inline-flex; align-items: center; gap: 4px;
+      padding: 2px 7px; border-radius: 3px;
+      font-size: 11px; font-weight: 500;
+      background: var(--brand-light); color: var(--brand);
+      cursor: pointer;
+    }
+    .impl-block-body { padding: 12px 14px; }
+    .impl-block-text { font-size: 13px; color: var(--text-quiet); line-height: 1.6; margin-bottom: 10px; }
+    .impl-block-tests { display: flex; flex-wrap: wrap; gap: 6px; }
+    .impl-test-tag {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 3px 8px; border-radius: 4px;
+      font-size: 11px; font-weight: 500;
+      border: 1px solid var(--border-default);
+      background: var(--bg-default); color: var(--text-quiet);
+      cursor: pointer;
+    }
+    .impl-test-dot {
+      width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0;
+    }
+    .impl-test-dot.pass { background: var(--success-text); }
+    .impl-test-dot.fail { background: var(--error-text); }
+    .impl-add-block {
+      display: flex; align-items: center; gap: 6px;
+      padding: 8px 14px;
+      border: 1px dashed var(--border-default);
+      border-radius: 6px;
+      font-size: 13px; color: var(--text-tertiary);
+      cursor: pointer; margin-top: 2px;
+      transition: border-color 0.1s, color 0.1s;
+    }
+    .impl-add-block:hover { border-color: var(--brand); color: var(--brand); }
+
     /* Issue rows */
     .issue-row {
       display: flex; align-items: flex-start; gap: 10px;
@@ -736,41 +783,6 @@
         <!-- Main content -->
         <div class="detail-main">
 
-          <!-- Control health summary -->
-          <div class="health-card">
-            <div class="health-stat">
-              <span class="health-stat-value pass">14</span>
-              <span class="health-stat-label">Tests passing</span>
-            </div>
-            <div class="health-divider"></div>
-            <div class="health-stat">
-              <span class="health-stat-value fail">2</span>
-              <span class="health-stat-label">Tests failing</span>
-            </div>
-            <div class="health-divider"></div>
-            <div class="health-bar-wrap">
-              <div class="health-bar-label">
-                <span>Test health</span>
-                <span>16 total</span>
-              </div>
-              <div class="health-bar-track">
-                <div class="health-bar-fill" style="width:87.5%"></div>
-              </div>
-              <div class="health-badge-row">
-                <span class="health-badge pass">
-                  <svg width="10" height="10" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  14 passing
-                </span>
-                <span class="health-badge fail">
-                  <svg width="10" height="10" viewBox="0 0 16 16" fill="none"><path d="M4.5 4.5l7 7M11.5 4.5l-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-                  2 failing
-                </span>
-                <span class="health-badge warn">2 unassigned</span>
-                <a class="health-view-link">View in Health →</a>
-              </div>
-            </div>
-          </div>
-
           <!-- Requirement card -->
           <div class="card">
             <div class="card-header">
@@ -805,7 +817,69 @@
               </span>
             </div>
             <div class="card-body">
-              <p class="card-text">To control who can access our systems remotely, we've set up a few layers of protection. Anyone working remotely must connect through our VPN, and everyone needs to verify their identity with a second factor (like an authenticator app) before getting in. We've written down the rules for how remote access is supposed to work in a policy doc — things like which connection methods are allowed and how long a session can stay open before timing out. For engineers who need to access our production servers directly, there's an extra step: they have to go through a secure gateway, and every session gets logged. We're also in the process of formally cataloging every type of remote connection we allow (employees, contractors, automated systems) so nothing is flying under the radar.</p>
+              <div class="impl-blocks">
+
+                <div class="impl-block">
+                  <div class="impl-block-header">
+                    <span class="impl-block-title">VPN & multi-factor authentication</span>
+                    <span class="impl-block-req">↗ SOC 2 CC 6.2a</span>
+                  </div>
+                  <div class="impl-block-body">
+                    <p class="impl-block-text">All remote connections must go through our VPN. Users verify identity with a second factor (authenticator app) before access is granted.</p>
+                    <div class="impl-block-tests">
+                      <span class="impl-test-tag"><span class="impl-test-dot pass"></span>MFA enabled — AWS</span>
+                      <span class="impl-test-tag"><span class="impl-test-dot pass"></span>VPN config check</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="impl-block">
+                  <div class="impl-block-header">
+                    <span class="impl-block-title">Session management & timeouts</span>
+                    <span class="impl-block-req">↗ SOC 2 CC 6.2b</span>
+                  </div>
+                  <div class="impl-block-body">
+                    <p class="impl-block-text">Connection methods and session duration limits are documented in the remote access policy. Sessions auto-terminate after 30 minutes of inactivity.</p>
+                    <div class="impl-block-tests">
+                      <span class="impl-test-tag"><span class="impl-test-dot pass"></span>Session timeout — Okta</span>
+                      <span class="impl-test-tag"><span class="impl-test-dot pass"></span>Remote access policy reviewed</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="impl-block">
+                  <div class="impl-block-header">
+                    <span class="impl-block-title">Privileged access via secure gateway</span>
+                    <span class="impl-block-req">↗ SOC 2 CC 6.3</span>
+                  </div>
+                  <div class="impl-block-body">
+                    <p class="impl-block-text">Engineers accessing production systems must go through a bastion/secure gateway. All sessions are logged automatically.</p>
+                    <div class="impl-block-tests">
+                      <span class="impl-test-tag"><span class="impl-test-dot fail"></span>Bastion host logging — AWS S3 backup</span>
+                      <span class="impl-test-tag"><span class="impl-test-dot pass"></span>Privileged access review</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="impl-block">
+                  <div class="impl-block-header">
+                    <span class="impl-block-title">Remote access catalog</span>
+                    <span class="impl-block-req">↗ SOC 2 CC 6.2c</span>
+                  </div>
+                  <div class="impl-block-body">
+                    <p class="impl-block-text">All remote connection types (employees, contractors, automated systems) are being cataloged. In progress — backup account pending connection.</p>
+                    <div class="impl-block-tests">
+                      <span class="impl-test-tag"><span class="impl-test-dot fail"></span>AWS S3 backup account connection</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="impl-add-block">
+                  <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                  Add implementation block
+                </div>
+
+              </div>
 
               <div class="card-section-label">Systems in scope</div>
               <div class="systems-list">
