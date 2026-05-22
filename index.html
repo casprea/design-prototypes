@@ -341,20 +341,30 @@
 
     /* ── Right sidebar ── */
     .detail-sidebar {
-      width: 316px; flex-shrink: 0;
-      border-left: 1px solid var(--border-quiet);
+      width: 380px; flex-shrink: 0;
       overflow-y: hidden;
-      background: var(--bg-default);
+      background: var(--bg-lowered);
+      display: flex; flex-direction: column;
+      gap: 10px;
+      padding: 12px 12px 33px;
     }
     .sidebar-section {
+      background: var(--bg-default);
+      border: 1px solid #dcdbda;
+      border-radius: 8px;
       padding: 16px 20px;
-      border-bottom: 1px solid var(--border-quiet);
+      flex-shrink: 0;
+    }
+    .sidebar-section.ai-section {
+      background: #f6f4ff;
+      border-color: #dcd7f5;
     }
     .sidebar-section-label {
       font-size: 11px; font-weight: 600;
-      color: var(--text-tertiary);
+      color: #9b9a99;
       text-transform: uppercase; letter-spacing: 0.6px;
-      margin-bottom: 12px;
+      height: 28px; display: flex; align-items: center;
+      margin-bottom: 4px;
     }
 
     /* Priority */
@@ -369,50 +379,58 @@
     .priority-task-name { font-size: 14px; font-weight: 600; color: var(--text-default); margin-bottom: 2px; }
     .priority-task-sub { font-size: 12px; color: var(--text-tertiary); margin-bottom: 14px; }
 
-    .rec-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+    .rec-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
     .rec-title { font-size: 13px; font-weight: 500; color: var(--text-default); }
     .btn-assign-all {
       display: inline-flex; align-items: center;
-      padding: 4px 10px; border-radius: 4px;
-      background: var(--text-default); color: white;
+      padding: 4px 8px; border-radius: 4px;
+      background: #12111d; color: white;
       font-size: 12px; font-weight: 500;
+      min-height: 24px;
       border: none; cursor: pointer; font-family: 'Inter', sans-serif;
     }
 
+    .owner-rows { display: flex; flex-direction: column; gap: 6px; }
     .owner-row {
       display: flex; align-items: center;
-      padding: 8px 0; gap: 10px;
-      border-top: 1px solid var(--border-quiet);
+      padding: 8px 10px; gap: 10px;
+      background: var(--bg-default);
+      border: 1px solid #efeff5;
+      border-radius: 8px;
     }
     .dd-avatar {
-      width: 28px; height: 28px; border-radius: 50%;
-      background: var(--bg-neutral); color: var(--text-quiet);
+      width: 24px; height: 24px; border-radius: 50%;
+      background: #efeff5; color: #3b3a52;
       display: inline-flex; align-items: center; justify-content: center;
       font-size: 10px; font-weight: 600; flex-shrink: 0;
     }
     .owner-info { flex: 1; min-width: 0; }
-    .owner-name-text { font-size: 12px; font-weight: 500; color: var(--text-default); }
-    .owner-sub-text { font-size: 11px; color: var(--text-tertiary); }
+    .owner-name-text { font-size: 12px; font-weight: 500; color: #151414; }
+    .owner-sub-text { font-size: 12px; color: #3b3a52; display: flex; align-items: center; gap: 0; }
+    .owner-sub-dot { color: #6e6c6b; margin: 0 4px; }
+    .owner-sub-unassigned { font-style: italic; color: #545352; }
     .btn-assign {
-      padding: 4px 10px; border-radius: 4px;
-      border: 1px solid var(--border-default);
-      background: var(--bg-default); color: var(--text-quiet);
+      padding: 4px 8px; border-radius: 4px;
+      border: 1px solid #ccccde;
+      background: var(--bg-default); color: #181724;
       font-size: 12px; font-weight: 500;
+      min-height: 24px;
       cursor: pointer; font-family: 'Inter', sans-serif; flex-shrink: 0;
     }
 
-    .followup-row { margin-top: 12px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .followup-row { margin-top: 12px; display: flex; align-items: center; gap: 6px; }
     .btn-ask-followup {
       display: inline-flex; align-items: center; gap: 6px;
-      padding: 6px 14px; border-radius: 6px;
-      border: 1px solid var(--border-default);
+      padding: 4px 8px; border-radius: 4px;
+      border: 1px solid #ccccde;
       background: var(--bg-default); color: var(--text-default);
-      font-size: 13px; font-weight: 500;
+      font-size: 12px; font-weight: 500;
       cursor: pointer; font-family: 'Inter', sans-serif;
+      margin-left: auto;
     }
     .ai-attr {
       display: inline-flex; align-items: center; gap: 4px;
-      font-size: 11px; color: var(--text-tertiary); flex: 1;
+      font-size: 11px; color: var(--text-tertiary);
     }
     .ai-thumbs { display: flex; gap: 2px; }
     .thumb-btn {
@@ -425,11 +443,11 @@
 
     /* Source grid */
     .source-grid {
-      display: grid; grid-template-columns: 100px 1fr;
-      gap: 10px 8px; align-items: center;
+      display: grid; grid-template-columns: 120px 1fr;
+      gap: 12px 8px; align-items: center;
     }
-    .source-label { font-size: 12px; color: var(--text-tertiary); }
-    .source-value { font-size: 13px; color: var(--text-default); font-weight: 500; }
+    .source-label { font-size: 12px; color: #6e6c6b; }
+    .source-value { font-size: 12px; color: #151414; font-weight: 500; }
     .source-link { color: #3c63ea; text-decoration: none; font-weight: 400; }
     .badge-in-audit {
       display: inline-flex; align-items: center;
@@ -440,18 +458,16 @@
     .tier-row { display: inline-flex; align-items: center; gap: 6px; }
 
     /* Common control */
-    .cc-card {
-      border: 1px solid var(--border-quiet);
-      border-radius: 8px; padding: 12px;
-    }
-    .cc-top { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; }
+    .cc-card { }
+    .cc-top { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 6px; }
     .cc-icon {
-      width: 28px; height: 28px; border-radius: 6px;
-      background: var(--bg-lowered); border: 1px solid var(--border-quiet);
+      width: 24px; height: 24px; border-radius: 4px;
+      background: #f2efef;
       display: inline-flex; align-items: center; justify-content: center;
-      flex-shrink: 0; color: var(--text-quiet);
+      flex-shrink: 0; color: #6e6c6b;
     }
-    .cc-title { font-size: 13px; font-weight: 600; color: var(--text-default); line-height: 1.4; }
+    .cc-title { font-size: 13px; font-weight: 600; color: #151414; line-height: 1.4; }
+    .cc-subtitle { font-size: 11px; color: #6e6c6b; margin-bottom: 8px; }
     .cc-meta { display: flex; align-items: center; gap: 6px; margin-bottom: 8px; flex-wrap: wrap; }
     .cc-tag {
       font-size: 11px; color: var(--text-quiet);
@@ -463,17 +479,18 @@
       background: var(--success-bg); color: var(--success-text);
       padding: 2px 6px; border-radius: 3px;
     }
-    .cc-desc { font-size: 12px; color: var(--text-quiet); line-height: 1.5; }
+    .cc-desc { font-size: 12px; color: #545352; line-height: 1.5; }
 
     /* Resource scope */
-    .scope-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+    .scope-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
     .scope-chip {
       padding: 3px 8px; border-radius: 4px;
-      font-size: 12px; font-weight: 500;
-      background: var(--bg-neutral); color: var(--text-quiet);
+      font-size: 11px; font-weight: 500;
+      background: #f5f4f4; color: #545352;
     }
-    .scope-env { font-size: 12px; color: var(--text-tertiary); }
-    .scope-env-val { color: var(--text-default); font-weight: 500; }
+    .scope-env-row { display: flex; align-items: center; gap: 8px; }
+    .scope-env-label { font-size: 12px; color: #6e6c6b; min-width: 120px; }
+    .scope-env-val { font-size: 12px; color: #151414; font-weight: 500; }
 
     /* Health summary card */
     .health-card {
@@ -941,7 +958,7 @@
         <div class="detail-sidebar">
 
           <!-- Today's top priority -->
-          <div class="sidebar-section">
+          <div class="sidebar-section ai-section">
             <div class="priority-top-row">
               <span class="priority-title">Today's top priority for you</span>
               <a class="priority-why">Why this one?</a>
@@ -956,30 +973,26 @@
               <button class="btn-assign-all">Assign all</button>
             </div>
 
-            <div class="owner-row">
-              <div class="dd-avatar">DD</div>
-              <div class="owner-info">
-                <div class="owner-name-text">S3 Backup Bucket Encryption Check</div>
-                <div class="owner-sub-text">Automated test · Unassigned</div>
+            <div class="owner-rows">
+              <div class="owner-row">
+                <div class="dd-avatar">DD</div>
+                <div class="owner-info">
+                  <div class="owner-name-text">S3 Backup Bucket Encryption Check</div>
+                  <div class="owner-sub-text">Automated test<span class="owner-sub-dot">·</span><span class="owner-sub-unassigned">Unassigned</span></div>
+                </div>
+                <button class="btn-assign">Assign</button>
               </div>
-              <button class="btn-assign">Assign</button>
-            </div>
-            <div class="owner-row">
-              <div class="dd-avatar">DD</div>
-              <div class="owner-info">
-                <div class="owner-name-text">RDS Encryption at Rest</div>
-                <div class="owner-sub-text">Automated test · Unassigned</div>
+              <div class="owner-row">
+                <div class="dd-avatar">DD</div>
+                <div class="owner-info">
+                  <div class="owner-name-text">RDS Encryption at Rest</div>
+                  <div class="owner-sub-text">Automated test<span class="owner-sub-dot">·</span><span class="owner-sub-unassigned">Unassigned</span></div>
+                </div>
+                <button class="btn-assign">Assign</button>
               </div>
-              <button class="btn-assign">Assign</button>
             </div>
 
             <div class="followup-row">
-              <button class="btn-ask-followup">
-                <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M3 3h10a1 1 0 011 1v7a1 1 0 01-1 1H5.5L2.5 14V4a1 1 0 011-1Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
-                Ask follow up
-              </button>
-            </div>
-            <div style="display:flex;align-items:center;gap:6px;margin-top:8px;">
               <span class="ai-attr">
                 <svg width="10" height="10" viewBox="0 0 16 16" fill="none"><path d="M8 2L9.3 5.7L13 7L9.3 8.3L8 12L6.7 8.3L3 7L6.7 5.7L8 2Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
                 Generated by Vanta AI
@@ -992,6 +1005,10 @@
                   <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M11 8.5V2H12.5V8.5H11ZM11 8.5L8 13.5L5.5 12L6.5 8.5H2.5V3.5L4 2H9.5L11 3V8.5Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
                 </button>
               </div>
+              <button class="btn-ask-followup">
+                Ask follow up
+                <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 3h10a1 1 0 011 1v7a1 1 0 01-1 1H5.5L2.5 14V4a1 1 0 011-1Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+              </button>
             </div>
           </div>
 
@@ -1019,14 +1036,13 @@
             <div class="cc-card">
               <div class="cc-top">
                 <div class="cc-icon">
-                  <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><rect x="2" y="4" width="12" height="9" rx="1.5" stroke="currentColor" stroke-width="1.4"/><path d="M5 4V3a1 1 0 011-1h4a1 1 0 011 1v1" stroke="currentColor" stroke-width="1.4"/></svg>
+                  <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><rect x="2" y="4" width="12" height="9" rx="1.5" stroke="currentColor" stroke-width="1.4"/><path d="M5 4V3a1 1 0 011-1h4a1 1 0 011 1v1" stroke="currentColor" stroke-width="1.4"/></svg>
                 </div>
-                <span class="cc-title">CC-14 — Remote access authentication</span>
+                <div>
+                  <div class="cc-title">CC-14 — Remote access authentication</div>
+                </div>
               </div>
-              <div class="cc-meta">
-                <span class="cc-tag">Identity and Access Management</span>
-                <span class="badge-ok">OK</span>
-              </div>
+              <div class="cc-subtitle">Identity and Access Management · <span class="badge-ok">OK</span></div>
               <p class="cc-desc">The organization must authenticate remote access connections.</p>
             </div>
           </div>
@@ -1038,7 +1054,10 @@
               <span class="scope-chip">AWS S3 backup buckets</span>
               <span class="scope-chip">Snowflake backups</span>
             </div>
-            <div class="scope-env">Environments <span class="scope-env-val">Production, Backup</span></div>
+            <div class="scope-env-row">
+              <span class="scope-env-label">Environments</span>
+              <span class="scope-env-val">Production, Backup</span>
+            </div>
           </div>
 
         </div><!-- /detail-sidebar -->
