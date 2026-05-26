@@ -224,7 +224,7 @@
       line-height: 1.5; margin-bottom: 4px;
     }
     .show-more-link {
-      font-size: 14px; color: var(--text-quiet);
+      font-size: 14px; color: var(--info-text);
       text-decoration: underline; cursor: pointer;
       margin-bottom: 12px; display: inline-block;
     }
@@ -320,7 +320,7 @@
       color: var(--text-quiet); margin-bottom: 16px;
     }
     .card-link {
-      font-size: 14px; color: var(--text-quiet);
+      font-size: 14px; color: var(--info-text);
       text-decoration: underline; cursor: pointer;
     }
     .card-section-label {
@@ -378,7 +378,7 @@
       gap: 8px; margin-bottom: 10px;
     }
     .priority-title { font-size: 14px; font-weight: 500; color: var(--text-default); flex: 1; }
-    .priority-why { font-size: 12px; color: #3b3a52; text-decoration: underline; text-decoration-style: dotted; cursor: pointer; white-space: nowrap; }
+    .priority-why { font-size: 12px; color: var(--info-text); text-decoration: underline; text-decoration-style: dotted; cursor: pointer; white-space: nowrap; }
     .priority-close { color: var(--text-tertiary); cursor: pointer; font-size: 18px; line-height: 1; background: none; border: none; padding: 4px; }
 
     .priority-task-name { font-size: 14px; font-weight: 500; color: var(--text-default); margin-bottom: 2px; }
@@ -653,6 +653,28 @@
     .issue-title { font-size: 13px; font-weight: 500; color: var(--text-default); margin-bottom: 2px; }
     .issue-meta { font-size: 11px; color: var(--text-tertiary); }
     .issue-cta { font-size: 12px; color: #3c63ea; cursor: pointer; text-decoration: underline; flex-shrink: 0; margin-top: 2px; }
+
+    /* Per-block completion chips */
+    .block-completion {
+      font-size: 11px; font-weight: 500;
+      display: inline-flex; align-items: center; gap: 4px;
+      white-space: nowrap;
+    }
+    .block-completion.pass { color: var(--success-text); }
+    .block-completion.fail { color: var(--error-text); }
+    .block-completion-dot {
+      width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0;
+    }
+    .block-completion-dot.pass { background: var(--success-text); }
+    .block-completion-dot.fail { background: var(--error-text); }
+
+    /* Sidebar context zone separator */
+    .sidebar-context-label {
+      font-size: 10px; font-weight: 600;
+      color: var(--text-tertiary);
+      text-transform: uppercase; letter-spacing: 0.8px;
+      padding: 2px 4px 0;
+    }
   </style>
 </head>
 <body>
@@ -864,7 +886,7 @@
               <span class="card-title">Implementation design</span>
               <span class="impl-status-chip">
                 <svg width="10" height="10" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3.5 2"/></svg>
-                In progress
+                2 of 4 complete
               </span>
             </div>
             <div class="card-body">
@@ -873,6 +895,7 @@
                 <div class="impl-block">
                   <div class="impl-block-header">
                     <span class="impl-block-title">VPN & multi-factor authentication</span>
+                    <span class="block-completion pass"><span class="block-completion-dot pass"></span>2/2 passing</span>
                     <span class="impl-block-req">↗ SOC 2 CC 6.2a</span>
                   </div>
                   <div class="impl-block-body">
@@ -909,6 +932,7 @@
                 <div class="impl-block">
                   <div class="impl-block-header">
                     <span class="impl-block-title">Session management & timeouts</span>
+                    <span class="block-completion pass"><span class="block-completion-dot pass"></span>2/2 passing</span>
                     <span class="impl-block-req">↗ SOC 2 CC 6.2b</span>
                   </div>
                   <div class="impl-block-body">
@@ -944,6 +968,7 @@
                 <div class="impl-block">
                   <div class="impl-block-header">
                     <span class="impl-block-title">Privileged access via secure gateway</span>
+                    <span class="block-completion fail"><span class="block-completion-dot fail"></span>1/2 failing</span>
                     <span class="impl-block-req">↗ SOC 2 CC 6.3</span>
                   </div>
                   <div class="impl-block-body">
@@ -979,6 +1004,7 @@
                 <div class="impl-block">
                   <div class="impl-block-header">
                     <span class="impl-block-title">Remote access catalog</span>
+                    <span class="block-completion fail"><span class="block-completion-dot fail"></span>0/1 failing</span>
                     <span class="impl-block-req">↗ SOC 2 CC 6.2c</span>
                   </div>
                   <div class="impl-block-body">
@@ -1136,6 +1162,9 @@
               </div>
             </div>
           </div>
+
+          <!-- Context zone separator -->
+          <div class="sidebar-context-label">Framework context</div>
 
           <!-- Source -->
           <div class="sidebar-section">
