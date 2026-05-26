@@ -181,7 +181,7 @@
     /* ── Main content ── */
     .main {
       flex: 1; display: flex; flex-direction: column;
-      overflow: hidden; background: var(--bg-default);
+      overflow-y: auto; background: var(--bg-default);
       min-height: 0;
     }
 
@@ -281,9 +281,9 @@
     }
 
     /* ── Detail body ── */
-    .detail-body { display: flex; flex: 1; overflow: hidden; min-height: 0; }
+    .detail-body { display: flex; }
     .detail-main {
-      flex: 1; overflow-y: auto;
+      flex: 1;
       padding: 24px 28px;
       background: var(--bg-lowered);
       display: flex; flex-direction: column; gap: 16px;
@@ -342,11 +342,15 @@
     /* ── Right sidebar ── */
     .detail-sidebar {
       width: 380px; flex-shrink: 0;
-      overflow-y: hidden;
+      overflow-y: auto;
       background: var(--bg-lowered);
       display: flex; flex-direction: column;
       gap: 10px;
       padding: 12px 12px 33px;
+      position: sticky;
+      top: 0;
+      height: calc(100vh - var(--topbar-h));
+      align-self: flex-start;
     }
     .sidebar-section {
       background: var(--bg-default);
@@ -554,6 +558,13 @@
     .req-scope-chip {
       padding: 2px 7px; border-radius: 3px;
       font-size: 12px; color: var(--text-quiet);
+      background: var(--bg-neutral);
+    }
+
+    .impl-scope-chip {
+      padding: 2px 7px; border-radius: 3px;
+      font-size: 11px; font-weight: 500;
+      color: var(--text-quiet);
       background: var(--bg-neutral);
     }
 
@@ -800,7 +811,7 @@
 
           <div class="detail-meta">
             <span class="badge badge-neutral">
-              <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M8 2L9.3 5.7L13 7L9.3 8.3L8 12L6.7 8.3L3 7L6.7 5.7L8 2Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M7.67578 1.99687C7.57031 2.03672 7.5 2.1375 7.5 2.25C7.5 2.3625 7.57031 2.46328 7.67578 2.50313L9 3L9.49688 4.32422C9.53672 4.42969 9.6375 4.5 9.75 4.5C9.8625 4.5 9.96328 4.42969 10.0031 4.32422L10.5 3L11.8242 2.50313C11.9297 2.46328 12 2.3625 12 2.25C12 2.1375 11.9297 2.03672 11.8242 1.99687L10.5 1.5L10.0031 0.175781C9.96328 0.0703125 9.8625 0 9.75 0C9.6375 0 9.53672 0.0703125 9.49688 0.175781L9 1.5L7.67578 1.99687ZM0.217969 5.625C0.084375 5.68594 0 5.81953 0 5.96719C0 6.11484 0.084375 6.24609 0.217969 6.30703L0.616406 6.49219L0.80625 6.57891L0.820312 6.58594L2.88984 7.54219L3.84609 9.60938L3.85312 9.62344L3.93984 9.81328L4.125 10.2141C4.18594 10.3477 4.31953 10.432 4.46484 10.432C4.61016 10.432 4.74375 10.3477 4.80469 10.2141L4.98984 9.81328L5.07656 9.62344L5.08359 9.60938L6.03984 7.53984L8.10938 6.58594L8.12344 6.57891L8.31328 6.49219L8.71406 6.30703C8.84766 6.24609 8.93203 6.1125 8.93203 5.96719C8.93203 5.82188 8.84766 5.68828 8.71406 5.62734L8.31328 5.44219L8.12344 5.35547L8.10938 5.34844L6.03984 4.39219L5.08594 2.32266L5.07891 2.30859L4.99219 2.11641L4.80703 1.71562C4.74609 1.58203 4.6125 1.49766 4.46719 1.49766C4.32188 1.49766 4.18828 1.58203 4.12734 1.71562L3.94219 2.11641L3.85547 2.30625L3.84844 2.32031L2.89219 4.38984L0.822656 5.34609L0.808594 5.35312L0.61875 5.43984L0.217969 5.625ZM2.16328 5.96484L3.36328 5.41172C3.60703 5.29922 3.80156 5.10469 3.91406 4.86094L4.46719 3.66094L5.02031 4.86094C5.13281 5.10469 5.32734 5.29922 5.57109 5.41172L6.77109 5.96484L5.57109 6.51797C5.32734 6.63047 5.13281 6.825 5.02031 7.06875L4.46719 8.26875L3.91406 7.06875C3.80156 6.825 3.60703 6.63047 3.36328 6.51797L2.16328 5.96719V5.96484ZM9 9L7.67578 9.49688C7.57031 9.53672 7.5 9.6375 7.5 9.75C7.5 9.8625 7.57031 9.96328 7.67578 10.0031L9 10.5L9.49688 11.8242C9.53672 11.9297 9.6375 12 9.75 12C9.8625 12 9.96328 11.9297 10.0031 11.8242L10.5 10.5L11.8242 10.0031C11.9297 9.96328 12 9.8625 12 9.75C12 9.6375 11.9297 9.53672 11.8242 9.49688L10.5 9L10.0031 7.67578C9.96328 7.57031 9.8625 7.5 9.75 7.5C9.6375 7.5 9.53672 7.57031 9.49688 7.67578L9 9Z" fill="currentColor"/></svg>
               Needs evidence
             </span>
             <div class="meta-owner">
@@ -808,7 +819,7 @@
               James Adams
             </div>
             <span class="badge badge-status">
-              <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3.5 2"/></svg>
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="4.75" stroke="currentColor" stroke-width="1.2" stroke-dasharray="2.4 1.2" stroke-linecap="round"/></svg>
               In progress
               <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M3 5L6 8L9 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </span>
@@ -844,15 +855,6 @@
               </div>
               <p class="card-text">Remote access is access to organizational systems (or processes acting on behalf of users) that communicate through external networks such as the Internet. Types of remote access include dial-up, broadband, and wireless. Organizations use encrypted virtual private networks (VPNs) to enhance confidentiality and integrity for remote connections. The use of encryp...</p>
               <a class="card-link">Show full requirement</a>
-              <div class="req-scope-row">
-                <span class="req-scope-label">Scope</span>
-                <div class="req-scope-chips">
-                  <span class="req-scope-chip">AWS S3</span>
-                  <span class="req-scope-chip">AWS RDS</span>
-                  <span class="req-scope-chip">Snowflake</span>
-                  <span class="req-scope-chip">Production, Backup</span>
-                </div>
-              </div>
             </div>
           </div>
 
@@ -876,6 +878,14 @@
                   <div class="impl-block-body">
                     <p class="impl-block-text">All remote connections must go through our VPN. Users verify identity with a second factor (authenticator app) before access is granted.</p>
                     <div class="impl-block-links">
+                      <div class="impl-block-link-row">
+                        <span class="impl-link-label">Scope</span>
+                        <div class="impl-link-tags">
+                          <span class="impl-scope-chip">AWS S3</span>
+                          <span class="impl-scope-chip">AWS RDS</span>
+                          <span class="impl-scope-chip">Snowflake</span>
+                        </div>
+                      </div>
                       <div class="impl-block-link-row">
                         <span class="impl-link-label">Policy</span>
                         <div class="impl-link-tags">
@@ -905,6 +915,13 @@
                     <p class="impl-block-text">Connection methods and session duration limits are documented in the remote access policy. Sessions auto-terminate after 30 minutes of inactivity.</p>
                     <div class="impl-block-links">
                       <div class="impl-block-link-row">
+                        <span class="impl-link-label">Scope</span>
+                        <div class="impl-link-tags">
+                          <span class="impl-scope-chip">AWS RDS</span>
+                          <span class="impl-scope-chip">Snowflake</span>
+                        </div>
+                      </div>
+                      <div class="impl-block-link-row">
                         <span class="impl-link-label">Policy</span>
                         <div class="impl-link-tags">
                           <span class="impl-policy-tag">
@@ -933,6 +950,13 @@
                     <p class="impl-block-text">Engineers accessing production systems must go through a bastion/secure gateway. All sessions are logged automatically.</p>
                     <div class="impl-block-links">
                       <div class="impl-block-link-row">
+                        <span class="impl-link-label">Scope</span>
+                        <div class="impl-link-tags">
+                          <span class="impl-scope-chip">AWS S3</span>
+                          <span class="impl-scope-chip">AWS RDS</span>
+                        </div>
+                      </div>
+                      <div class="impl-block-link-row">
                         <span class="impl-link-label">Policy</span>
                         <div class="impl-link-tags">
                           <span class="impl-policy-tag">
@@ -960,6 +984,13 @@
                   <div class="impl-block-body">
                     <p class="impl-block-text">All remote connection types (employees, contractors, automated systems) are being cataloged. In progress — backup account pending connection.</p>
                     <div class="impl-block-links">
+                      <div class="impl-block-link-row">
+                        <span class="impl-link-label">Scope</span>
+                        <div class="impl-link-tags">
+                          <span class="impl-scope-chip">Production</span>
+                          <span class="impl-scope-chip">Backup</span>
+                        </div>
+                      </div>
                       <div class="impl-block-link-row">
                         <span class="impl-link-label">Policy</span>
                         <div class="impl-link-tags">
@@ -1091,7 +1122,7 @@
               </div>
               <div class="footer-ai-row">
                 <span class="ai-attr">
-                  <svg width="10" height="10" viewBox="0 0 16 16" fill="none"><path d="M8 2L9.3 5.7L13 7L9.3 8.3L8 12L6.7 8.3L3 7L6.7 5.7L8 2Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+                  <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M7.67578 1.99687C7.57031 2.03672 7.5 2.1375 7.5 2.25C7.5 2.3625 7.57031 2.46328 7.67578 2.50313L9 3L9.49688 4.32422C9.53672 4.42969 9.6375 4.5 9.75 4.5C9.8625 4.5 9.96328 4.42969 10.0031 4.32422L10.5 3L11.8242 2.50313C11.9297 2.46328 12 2.3625 12 2.25C12 2.1375 11.9297 2.03672 11.8242 1.99687L10.5 1.5L10.0031 0.175781C9.96328 0.0703125 9.8625 0 9.75 0C9.6375 0 9.53672 0.0703125 9.49688 0.175781L9 1.5L7.67578 1.99687ZM0.217969 5.625C0.084375 5.68594 0 5.81953 0 5.96719C0 6.11484 0.084375 6.24609 0.217969 6.30703L0.616406 6.49219L0.80625 6.57891L0.820312 6.58594L2.88984 7.54219L3.84609 9.60938L3.85312 9.62344L3.93984 9.81328L4.125 10.2141C4.18594 10.3477 4.31953 10.432 4.46484 10.432C4.61016 10.432 4.74375 10.3477 4.80469 10.2141L4.98984 9.81328L5.07656 9.62344L5.08359 9.60938L6.03984 7.53984L8.10938 6.58594L8.12344 6.57891L8.31328 6.49219L8.71406 6.30703C8.84766 6.24609 8.93203 6.1125 8.93203 5.96719C8.93203 5.82188 8.84766 5.68828 8.71406 5.62734L8.31328 5.44219L8.12344 5.35547L8.10938 5.34844L6.03984 4.39219L5.08594 2.32266L5.07891 2.30859L4.99219 2.11641L4.80703 1.71562C4.74609 1.58203 4.6125 1.49766 4.46719 1.49766C4.32188 1.49766 4.18828 1.58203 4.12734 1.71562L3.94219 2.11641L3.85547 2.30625L3.84844 2.32031L2.89219 4.38984L0.822656 5.34609L0.808594 5.35312L0.61875 5.43984L0.217969 5.625ZM2.16328 5.96484L3.36328 5.41172C3.60703 5.29922 3.80156 5.10469 3.91406 4.86094L4.46719 3.66094L5.02031 4.86094C5.13281 5.10469 5.32734 5.29922 5.57109 5.41172L6.77109 5.96484L5.57109 6.51797C5.32734 6.63047 5.13281 6.825 5.02031 7.06875L4.46719 8.26875L3.91406 7.06875C3.80156 6.825 3.60703 6.63047 3.36328 6.51797L2.16328 5.96719V5.96484ZM9 9L7.67578 9.49688C7.57031 9.53672 7.5 9.6375 7.5 9.75C7.5 9.8625 7.57031 9.96328 7.67578 10.0031L9 10.5L9.49688 11.8242C9.53672 11.9297 9.6375 12 9.75 12C9.8625 12 9.96328 11.9297 10.0031 11.8242L10.5 10.5L11.8242 10.0031C11.9297 9.96328 12 9.8625 12 9.75C12 9.6375 11.9297 9.53672 11.8242 9.49688L10.5 9L10.0031 7.67578C9.96328 7.57031 9.8625 7.5 9.75 7.5C9.6375 7.5 9.53672 7.57031 9.49688 7.67578L9 9Z" fill="currentColor"/></svg>
                   Generated by Vanta AI
                 </span>
                 <div class="ai-thumbs">
