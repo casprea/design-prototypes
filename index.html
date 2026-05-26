@@ -578,7 +578,24 @@
       cursor: pointer;
     }
     .impl-block-body { padding: 12px 14px; }
-    .impl-block-text { font-size: 13px; color: var(--text-quiet); line-height: 1.6; margin-bottom: 10px; }
+    .impl-block-text { font-size: 13px; color: var(--text-quiet); line-height: 1.6; margin-bottom: 12px; }
+    .impl-block-links { display: flex; flex-direction: column; gap: 8px; }
+    .impl-block-link-row { display: flex; align-items: flex-start; gap: 8px; }
+    .impl-link-label {
+      font-size: 11px; font-weight: 500; color: var(--text-tertiary);
+      min-width: 44px; padding-top: 3px; flex-shrink: 0;
+      text-transform: uppercase; letter-spacing: 0.4px;
+    }
+    .impl-link-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .impl-policy-tag {
+      display: inline-flex; align-items: center; gap: 4px;
+      padding: 3px 8px; border-radius: 4px;
+      font-size: 11px; font-weight: 500;
+      border: 1px solid #dce4ff;
+      background: #eef1ff; color: #2748c8;
+      cursor: pointer;
+    }
+    .impl-policy-tag:hover { background: #e1e9ff; }
     .impl-block-tests { display: flex; flex-wrap: wrap; gap: 6px; }
     .impl-test-tag {
       display: inline-flex; align-items: center; gap: 5px;
@@ -852,9 +869,23 @@
                   </div>
                   <div class="impl-block-body">
                     <p class="impl-block-text">All remote connections must go through our VPN. Users verify identity with a second factor (authenticator app) before access is granted.</p>
-                    <div class="impl-block-tests">
-                      <span class="impl-test-tag"><span class="impl-test-dot pass"></span>MFA enabled — AWS</span>
-                      <span class="impl-test-tag"><span class="impl-test-dot pass"></span>VPN config check</span>
+                    <div class="impl-block-links">
+                      <div class="impl-block-link-row">
+                        <span class="impl-link-label">Policy</span>
+                        <div class="impl-link-tags">
+                          <span class="impl-policy-tag">
+                            <svg width="10" height="10" viewBox="0 0 16 16" fill="none"><rect x="3" y="2" width="10" height="12" rx="1.5" stroke="currentColor" stroke-width="1.4"/><path d="M5.5 6h5M5.5 9h3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+                            Remote Access Policy §4.2
+                          </span>
+                        </div>
+                      </div>
+                      <div class="impl-block-link-row">
+                        <span class="impl-link-label">Tests</span>
+                        <div class="impl-link-tags">
+                          <span class="impl-test-tag"><span class="impl-test-dot pass"></span>MFA enabled — AWS</span>
+                          <span class="impl-test-tag"><span class="impl-test-dot pass"></span>VPN config check</span>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -866,9 +897,23 @@
                   </div>
                   <div class="impl-block-body">
                     <p class="impl-block-text">Connection methods and session duration limits are documented in the remote access policy. Sessions auto-terminate after 30 minutes of inactivity.</p>
-                    <div class="impl-block-tests">
-                      <span class="impl-test-tag"><span class="impl-test-dot pass"></span>Session timeout — Okta</span>
-                      <span class="impl-test-tag"><span class="impl-test-dot pass"></span>Remote access policy reviewed</span>
+                    <div class="impl-block-links">
+                      <div class="impl-block-link-row">
+                        <span class="impl-link-label">Policy</span>
+                        <div class="impl-link-tags">
+                          <span class="impl-policy-tag">
+                            <svg width="10" height="10" viewBox="0 0 16 16" fill="none"><rect x="3" y="2" width="10" height="12" rx="1.5" stroke="currentColor" stroke-width="1.4"/><path d="M5.5 6h5M5.5 9h3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+                            Remote Access Policy §5.1
+                          </span>
+                        </div>
+                      </div>
+                      <div class="impl-block-link-row">
+                        <span class="impl-link-label">Tests</span>
+                        <div class="impl-link-tags">
+                          <span class="impl-test-tag"><span class="impl-test-dot pass"></span>Session timeout — Okta</span>
+                          <span class="impl-test-tag"><span class="impl-test-dot pass"></span>Remote access policy reviewed</span>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -880,9 +925,23 @@
                   </div>
                   <div class="impl-block-body">
                     <p class="impl-block-text">Engineers accessing production systems must go through a bastion/secure gateway. All sessions are logged automatically.</p>
-                    <div class="impl-block-tests">
-                      <span class="impl-test-tag"><span class="impl-test-dot fail"></span>Bastion host logging — AWS S3 backup</span>
-                      <span class="impl-test-tag"><span class="impl-test-dot pass"></span>Privileged access review</span>
+                    <div class="impl-block-links">
+                      <div class="impl-block-link-row">
+                        <span class="impl-link-label">Policy</span>
+                        <div class="impl-link-tags">
+                          <span class="impl-policy-tag">
+                            <svg width="10" height="10" viewBox="0 0 16 16" fill="none"><rect x="3" y="2" width="10" height="12" rx="1.5" stroke="currentColor" stroke-width="1.4"/><path d="M5.5 6h5M5.5 9h3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+                            Privileged Access Policy §3.1
+                          </span>
+                        </div>
+                      </div>
+                      <div class="impl-block-link-row">
+                        <span class="impl-link-label">Tests</span>
+                        <div class="impl-link-tags">
+                          <span class="impl-test-tag"><span class="impl-test-dot fail"></span>Bastion host logging — AWS S3 backup</span>
+                          <span class="impl-test-tag"><span class="impl-test-dot pass"></span>Privileged access review</span>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -894,8 +953,22 @@
                   </div>
                   <div class="impl-block-body">
                     <p class="impl-block-text">All remote connection types (employees, contractors, automated systems) are being cataloged. In progress — backup account pending connection.</p>
-                    <div class="impl-block-tests">
-                      <span class="impl-test-tag"><span class="impl-test-dot fail"></span>AWS S3 backup account connection</span>
+                    <div class="impl-block-links">
+                      <div class="impl-block-link-row">
+                        <span class="impl-link-label">Policy</span>
+                        <div class="impl-link-tags">
+                          <span class="impl-policy-tag">
+                            <svg width="10" height="10" viewBox="0 0 16 16" fill="none"><rect x="3" y="2" width="10" height="12" rx="1.5" stroke="currentColor" stroke-width="1.4"/><path d="M5.5 6h5M5.5 9h3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+                            Access Management Policy §2.3
+                          </span>
+                        </div>
+                      </div>
+                      <div class="impl-block-link-row">
+                        <span class="impl-link-label">Tests</span>
+                        <div class="impl-link-tags">
+                          <span class="impl-test-tag"><span class="impl-test-dot fail"></span>AWS S3 backup account connection</span>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
