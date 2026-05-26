@@ -358,6 +358,7 @@
     .sidebar-section.ai-section {
       background: #f6f4ff;
       border-color: #dcd7f5;
+      padding: 12px 16px;
     }
     .sidebar-section-label {
       font-size: 11px; font-weight: 600;
@@ -372,15 +373,15 @@
       display: flex; align-items: center;
       gap: 8px; margin-bottom: 10px;
     }
-    .priority-title { font-size: 13px; font-weight: 500; color: var(--text-default); flex: 1; }
-    .priority-why { font-size: 12px; color: #3c63ea; text-decoration: underline; cursor: pointer; white-space: nowrap; }
-    .priority-close { color: var(--text-tertiary); cursor: pointer; font-size: 18px; line-height: 1; }
+    .priority-title { font-size: 14px; font-weight: 500; color: var(--text-default); flex: 1; }
+    .priority-why { font-size: 12px; color: #3b3a52; text-decoration: underline; text-decoration-style: dotted; cursor: pointer; white-space: nowrap; }
+    .priority-close { color: var(--text-tertiary); cursor: pointer; font-size: 18px; line-height: 1; background: none; border: none; padding: 4px; }
 
-    .priority-task-name { font-size: 14px; font-weight: 600; color: var(--text-default); margin-bottom: 2px; }
-    .priority-task-sub { font-size: 12px; color: var(--text-tertiary); margin-bottom: 14px; }
+    .priority-task-name { font-size: 14px; font-weight: 500; color: var(--text-default); margin-bottom: 2px; }
+    .priority-task-sub { font-size: 12px; color: #3b3a52; margin-bottom: 0; }
 
     .rec-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
-    .rec-title { font-size: 13px; font-weight: 500; color: var(--text-default); }
+    .rec-title { font-size: 14px; font-weight: 500; color: var(--text-default); }
     .btn-assign-all {
       display: inline-flex; align-items: center;
       padding: 4px 8px; border-radius: 4px;
@@ -390,13 +391,18 @@
       border: none; cursor: pointer; font-family: 'Inter', sans-serif;
     }
 
-    .owner-rows { display: flex; flex-direction: column; gap: 6px; }
+    .owner-rows { display: flex; flex-direction: column; gap: 4px; margin-bottom: 0; }
     .owner-row {
       display: flex; align-items: center;
-      padding: 8px 10px; gap: 10px;
+      padding-right: 16px; gap: 16px;
       background: var(--bg-default);
       border: 1px solid #efeff5;
       border-radius: 8px;
+      overflow: hidden;
+    }
+    .owner-row-content {
+      flex: 1; display: flex; align-items: center;
+      gap: 8px; padding: 8px; min-width: 0;
     }
     .dd-avatar {
       width: 24px; height: 24px; border-radius: 50%;
@@ -418,7 +424,9 @@
       cursor: pointer; font-family: 'Inter', sans-serif; flex-shrink: 0;
     }
 
-    .followup-row { margin-top: 12px; display: flex; align-items: center; gap: 6px; }
+    .footer-region { margin-top: 12px; display: flex; flex-direction: column; gap: 6px; padding: 4px 0; }
+    .footer-ask-row { display: flex; justify-content: flex-end; }
+    .footer-ai-row { display: flex; align-items: center; justify-content: space-between; }
     .btn-ask-followup {
       display: inline-flex; align-items: center; gap: 6px;
       padding: 4px 8px; border-radius: 4px;
@@ -426,7 +434,6 @@
       background: var(--bg-default); color: var(--text-default);
       font-size: 12px; font-weight: 500;
       cursor: pointer; font-family: 'Inter', sans-serif;
-      margin-left: auto;
     }
     .ai-attr {
       display: inline-flex; align-items: center; gap: 4px;
@@ -968,47 +975,55 @@
             <div class="priority-task-name">Assign evidence owners</div>
             <div class="priority-task-sub">2 tests need owners</div>
 
-            <div class="rec-header">
+            <div class="rec-header" style="padding-top:16px;">
               <span class="rec-title">Recommended owners</span>
               <button class="btn-assign-all">Assign all</button>
             </div>
 
             <div class="owner-rows">
               <div class="owner-row">
-                <div class="dd-avatar">DD</div>
-                <div class="owner-info">
-                  <div class="owner-name-text">S3 Backup Bucket Encryption Check</div>
-                  <div class="owner-sub-text">Automated test<span class="owner-sub-dot">·</span><span class="owner-sub-unassigned">Unassigned</span></div>
+                <div class="owner-row-content">
+                  <div class="dd-avatar">DD</div>
+                  <div class="owner-info">
+                    <div class="owner-name-text">S3 Backup Bucket Encryption Check</div>
+                    <div class="owner-sub-text">Automated test<span class="owner-sub-dot">·</span><span class="owner-sub-unassigned">Unassigned</span></div>
+                  </div>
                 </div>
                 <button class="btn-assign">Assign</button>
               </div>
               <div class="owner-row">
-                <div class="dd-avatar">DD</div>
-                <div class="owner-info">
-                  <div class="owner-name-text">RDS Encryption at Rest</div>
-                  <div class="owner-sub-text">Automated test<span class="owner-sub-dot">·</span><span class="owner-sub-unassigned">Unassigned</span></div>
+                <div class="owner-row-content">
+                  <div class="dd-avatar">DD</div>
+                  <div class="owner-info">
+                    <div class="owner-name-text">RDS Encryption at Rest</div>
+                    <div class="owner-sub-text">Automated test<span class="owner-sub-dot">·</span><span class="owner-sub-unassigned">Unassigned</span></div>
+                  </div>
                 </div>
                 <button class="btn-assign">Assign</button>
               </div>
             </div>
 
-            <div class="followup-row">
-              <span class="ai-attr">
-                <svg width="10" height="10" viewBox="0 0 16 16" fill="none"><path d="M8 2L9.3 5.7L13 7L9.3 8.3L8 12L6.7 8.3L3 7L6.7 5.7L8 2Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
-                Generated by Vanta AI
-              </span>
-              <div class="ai-thumbs">
-                <button class="thumb-btn">
-                  <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M5 7.5V14H3.5V7.5H5ZM5 7.5L8 2.5L10.5 4L9.5 7.5H13.5V12.5L12 14H6.5L5 13V7.5Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
-                </button>
-                <button class="thumb-btn">
-                  <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M11 8.5V2H12.5V8.5H11ZM11 8.5L8 13.5L5.5 12L6.5 8.5H2.5V3.5L4 2H9.5L11 3V8.5Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
+            <div class="footer-region">
+              <div class="footer-ask-row">
+                <button class="btn-ask-followup">
+                  Ask follow up
+                  <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 3h10a1 1 0 011 1v7a1 1 0 01-1 1H5.5L2.5 14V4a1 1 0 011-1Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
                 </button>
               </div>
-              <button class="btn-ask-followup">
-                Ask follow up
-                <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 3h10a1 1 0 011 1v7a1 1 0 01-1 1H5.5L2.5 14V4a1 1 0 011-1Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
-              </button>
+              <div class="footer-ai-row">
+                <span class="ai-attr">
+                  <svg width="10" height="10" viewBox="0 0 16 16" fill="none"><path d="M8 2L9.3 5.7L13 7L9.3 8.3L8 12L6.7 8.3L3 7L6.7 5.7L8 2Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+                  Generated by Vanta AI
+                </span>
+                <div class="ai-thumbs">
+                  <button class="thumb-btn">
+                    <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M5 7.5V14H3.5V7.5H5ZM5 7.5L8 2.5L10.5 4L9.5 7.5H13.5V12.5L12 14H6.5L5 13V7.5Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
+                  </button>
+                  <button class="thumb-btn">
+                    <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M11 8.5V2H12.5V8.5H11ZM11 8.5L8 13.5L5.5 12L6.5 8.5H2.5V3.5L4 2H9.5L11 3V8.5Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
 
